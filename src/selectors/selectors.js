@@ -6,3 +6,6 @@ export const selectorWeatherTemp = (state) => state?.weather.weather?.data?.curr
 export const selectorWeatherDesc = (state) => state?.weather.weather?.data?.current_condition[0].lang_ru[0].value
 
 export const selectorWeatherHourly = (state) => state?.weather.weather?.data?.weather[0].hourly;
+export const selectorWeatherNext = (state) => state?.weather.weather?.data?.weather;
+
+export const selectorIsFetching = (state) => state?.boot

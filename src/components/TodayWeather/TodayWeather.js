@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector } from 'react-redux';
 import { selectorWeatherCity, selectorWeatherDesc, selectorWeatherTemp} from "../../selectors/selectors";
-import { state, selectorWeatherHourly } from './../../selectors/selectors';
+import { state, selectorWeatherHourly, selectorIsFetching } from './../../selectors/selectors';
+import { useState } from "react";
 
 export const WeatherCard = styled.div`
     margin-top: 30px;
@@ -35,6 +36,14 @@ export const WeatherCard = styled.div`
 
 }
 `
+export const Fetchng = styled.div`
+    width: 100px;
+    height: 100px;
+    border-radius:100%;
+    margin:30vh auto;
+    border: 2px dashed green;
+`
+
 
 
 const TodayWeather = () => {
@@ -44,6 +53,9 @@ const TodayWeather = () => {
     const weatherTemp = useSelector(selectorWeatherTemp);
     const weatherDesc = useSelector(selectorWeatherDesc);
     const weatherHourly = useSelector(selectorWeatherHourly)
+    const isFetching = useSelector(selectorIsFetching)
+    
+
 
     const formatTime = (e) => {
         if(e === '0') {
@@ -56,23 +68,26 @@ const TodayWeather = () => {
 
     
     // console.log(weatherBlock)
+    // return isFetching === false ? (
     return (
-        <WeatherCard>
-            Город
-            <h2>{weatherCity}</h2>
-            <p>{weatherTemp} C°</p>
-            <p>{weatherDesc}</p>
-            <section>
-                {weatherHourly?.map((e) => 
-                    <div>
-                        <p>{formatTime(e.time)}</p>
-                        <p>{e.tempC} C°</p>
-                    </div>
-                )}
-            </section>
-            
-        </WeatherCard>
-    )
+      <WeatherCard>
+        Город
+        <h2>{weatherCity}</h2>
+        <p>{weatherTemp} C°</p>
+        <p>{weatherDesc}</p>
+        <section>
+          {weatherHourly?.map((e) => (
+            <div>
+              <p>{formatTime(e.time)}</p>
+              <p>{e.tempC} C°</p>
+            </div>
+          ))}
+        </section>
+      </WeatherCard>
+    ) 
+    // : (
+    //   <Fetchng></Fetchng>
+    // );
 }
 
 export default TodayWeather

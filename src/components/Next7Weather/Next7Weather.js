@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from 'react-redux';
+import { selectorWeatherCity, selectorWeatherNext } from "../../selectors/selectors";
 
 const Weather = styled.div`
     
@@ -25,29 +27,40 @@ const Weather = styled.div`
 }
 `
 const monthsArr = ['Января','Февраля','Марта','Апреля','Мая','Июня','Июля','Августа','Сентября','Октября','Ноября','Декабря']
+let countDay = 0
+
 
 const Next7Weather = (props) => {
-  const cityWeather = props?.weathers?.weather?.data?.request[0].query;
-  const weathersBlock = props?.weathers?.weather?.data;
+  const cityWeather = useSelector(selectorWeatherCity)
+  const weathersBlock = useSelector(selectorWeatherNext);
   
+
 const date = (e) => {
-  let dateArr = e.split('-').reverse()
-  delete dateArr[2]
-  
-  // console.log(dateArr)
+  let dateArr
+  if (countDay <= 6) {
+    dateArr = e.split('-').reverse()
+    dateArr.pop()
+    countDay++
+    return dateArr.join('.')
+  } else {
+    return dateArr
+  }
 }
 
 
-  console.log(weathersBlock)
     return (
       <Weather>
 
-        {weathersBlock?.weather.map((e) =>
-          <div>
-            <h2>{cityWeather}</h2>
-            <p>{e.avgtempC} C°</p>
-            <p>{date(e.date)}</p>
-          </div>
+        {weathersBlock?.map((e) =>
+          {if(countDay <= 6) {
+            return (<div>
+              <h2>{cityWeather}</h2>
+              <p>{e.avgtempC} C°</p>
+              <p>{date(e.date)}</p>
+            </div>);
+          }
+        }
+          
            
          )}
 
