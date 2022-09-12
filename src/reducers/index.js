@@ -1,22 +1,15 @@
-import {combineReducers} from 'redux'
-import {configureStore} from '@reduxjs/toolkit'
-import {createStore, applyMiddleware} from 'redux'
-import { composeWithDevTools } from 'redux-devtools-extension';
-import weatherReducer from './weatherReducer';
-import thunk from 'redux-thunk'
-
+import { combineReducers } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
+import { applyMiddleware } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import weatherReducer from "./weatherReducer";
+import thunk from "redux-thunk";
 
 const rootReducer = combineReducers({
-    weather: weatherReducer,
-
-})
+  weather: weatherReducer,
+});
 
 export const store = configureStore({
-    reducer: rootReducer,
-    composeWithDevTools: composeWithDevTools(applyMiddleware(thunk)),
-})
-
-
-
-// export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
-// console.log(store.getState())
+  reducer: rootReducer,
+  composeWithDevTools: composeWithDevTools(applyMiddleware(thunk)),
+});

@@ -4,7 +4,7 @@ const SET_IS_FETCHING = 'SET_IS_FETCHING'
 
 const defaultState = {
     weather: [],
-    isFetching: true,
+    isFetching: false,
 }
 
 export default function weatherReducer(state = defaultState, action) {
@@ -28,4 +28,3 @@ export default function weatherReducer(state = defaultState, action) {
 
 export const setWeather = (weather) => ({type:SET_WEATHER, payload:weather})
 export const setIsFetching = (bool) => ({type:SET_IS_FETCHING, payload:bool})
-console.log(setWeather())

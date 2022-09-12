@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { getWeather } from './../../action/weather';
 
 const SearchStyle = styled.div`
     max-width: 800px;
@@ -18,6 +20,10 @@ const SearchStyle = styled.div`
 
 & button:hover {
     box-shadow: 0 0 6px green;
+}
+
+& div {
+    color: white;
 }
 `
 
@@ -45,16 +51,18 @@ const Input = styled.input`
     outline:none; 
 }
 `
-export let city
+export let city 
 
 const SearchCity = () => {
-
-    const [searchValue, setSearchValue] = useState('')
+  const dispatch = useDispatch()
+  const [searchValue, setSearchValue] = useState('')
 
     const searchHandler = () => {
-        city = searchValue
-        console.log(city)
+       city = searchValue
+       dispatch(getWeather(city))
     }
+
+    
 
     return (
       <SearchStyle>
@@ -63,6 +71,7 @@ const SearchCity = () => {
           
             <Input value={searchValue} onChange={e => setSearchValue(e.target.value)} type="text" placeholder="Your city"/>
             <button onClick={() => searchHandler()}>поиск</button>
+            
         </div>
       </SearchStyle>
     );
