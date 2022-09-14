@@ -52,10 +52,10 @@ const Weather = styled.div`
   }
 `;
 const WeatherToday = styled.div`
-  margin: 30px 30px 0 10px;
+  margin: 30px 15px 0 10px;
   cursor: pointer;
-  width: 120px;
-  min-width: 120px;
+  width: 135px;
+  min-width: 135px;
   min-height: 200px;
   border: 1px solid grey;
   border-radius: 10px;
@@ -68,6 +68,7 @@ const WeatherToday = styled.div`
     margin: 10px auto;
   }
   & img {
+    width:60px;
     margin: 5px 0 0 0;
   }
 `;
