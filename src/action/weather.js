@@ -27,12 +27,14 @@ const API_KEY = '787dce194ba146b8a37135856220609'
 export const getWeather = (searchCity = 'Нижний Новгород') => {
 
   return async (dispatch) => {
-    dispatch(setIsFetching(true))
+    dispatch(setIsFetching(false))
     await axios.get(
       `http://api.worldweatheronline.com/premium/v1/weather.ashx?key=${API_KEY}&format=JSON&lang=ru&q=${searchCity}`
     ).then((response) => {
+      
+      if (!response.data.data.error) {
         dispatch(setWeather(response.data));
-        // console.log(setWeather(response.data));
+      }  
     }).catch((error) => {
         console.error(error)
     })

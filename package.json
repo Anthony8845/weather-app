@@ -48,6 +48,5 @@
   },
   "resolutions": {
     "styled-components": "^5"
-  },
-  "homepage": "https://anthony8845.github.io/weather-app"
+  }
 }
