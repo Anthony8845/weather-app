@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   selectorWeatherCity,
   selectorWeatherCode,
@@ -13,6 +13,7 @@ import {
   selectorIsFetching,
 } from "./../../selectors/selectors";
 import { weatherImg } from "./../../img/index";
+import { setIsFetching } from './../../reducers/weatherReducer';
 
 export const WeatherCard = styled.div`
   margin-top: 30px;
@@ -84,9 +85,14 @@ const TodayWeather = () => {
   const weatherHourly = useSelector(selectorWeatherHourly);
   const isFetching = useSelector(selectorIsFetching);
 
-  return isFetching === false ? (
-    // return (
-    <Fetching></Fetching>
+console.log(isFetching)
+ 
+  return isFetching === true ? (
+    <div>
+        {console.log('lol')}
+        <Fetching></Fetching>
+    </div>
+    
   ) : (
     <WeatherCard style={{ backgroundImage: `url(${weatherImg[weatherCode]})` }}>
       Город

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getWeather } from "./../../action/weather";
+import { useEffect } from "react";
 
 const SearchStyle = styled.div`
   max-width: 800px;
@@ -57,6 +58,10 @@ const Input = styled.input`
 const SearchCity = () => {
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState("");
+
+  useEffect(() => {
+    dispatch(getWeather())
+  }, [])
 
   const searchHandler = () => {
     dispatch(getWeather(searchValue));

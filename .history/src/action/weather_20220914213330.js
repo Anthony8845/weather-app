@@ -22,7 +22,7 @@ import { city } from '../components/search/SearchCity'
     
 // }
 
-const API_KEY = 'f422739042b84fa0b59220625220611'
+const API_KEY = '787dce194ba146b8a37135856220609'
 
 export const getWeather = (searchCity = 'Нижний Новгород') => {
 
