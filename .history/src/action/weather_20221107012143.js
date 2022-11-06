@@ -29,7 +29,7 @@ export const getWeather = (searchCity = 'Нижний Новгород') => {
   return async (dispatch) => {
     dispatch(setIsFetching(false))
     await axios.get(
-      `https://api.worldweatheronline.com/premium/v1/weather.ashx?key=${API_KEY}&format=JSON&lang=ru&q=${searchCity}`
+      `http://api.worldweatheronline.com/premium/v1/weather.ashx?key=${API_KEY}&format=JSON&lang=ru&q=${searchCity}`
     ).then((response) => {
       
       if (!response.data.data.error) {
